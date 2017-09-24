@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# coding:utf8
+# coding: utf8
 
 
 """
@@ -13,8 +13,11 @@ This class deals with ISSUER or SUBJECT field on a
 - emailAddress : Email Address
 """
 
+import global_ref
 import M2Crypto
 import re
+
+from global_ref import *
 from M2Crypto import X509
 
 
@@ -45,33 +48,33 @@ class CertificateFields:
         or subject informations
         """
         self.reference = {
-            'C': {
-                'name': 'Country',
-                'value': '',
+            REF_COUNTRY: {
+                NAME: COUNTRY,
+                REF_VALUE: '',
             },
-            'CN': {
-                'name': 'Common Name',
-                'value': ''
+            REF_COMMON_NAME: {
+                REF_NAME: COMMON_NAME,
+                REF_VALUE: ''
             },
-            'L': {
-                'name': 'Locality',
-                'value': ''
+            REF_LOCALITY: {
+                REF_NAME: LOCALITY,
+                REF_VALUE: ''
             },
-            'ST': {
-                'name': 'State Locality',
-                'value': ''
+            REF_STATE_LOCALITY: {
+                REF_NAME: STATE_LOCALITY,
+                REF_VALUE: ''
             },
-            'O': {
-                'name': 'Organization',
-                'value': ''
+            REF_ORGANIZATION: {
+                REF_NAME: ORGANIZATION,
+                REF_VALUE: ''
             },
-            'OU': {
-                'name': 'Organization Unit',
-                'value': ''
+            REF_ORGANIZATION_UNIT: {
+                REF_NAME: ORGANIZATION_UNIT,
+                REF_VALUE: ''
             },
             'emailAddress': {
-                'name': 'Email',
-                'value': ''
+                REF_NAME: 'Email',
+                REF_VALUE: ''
             }
         }
 
@@ -83,9 +86,9 @@ class CertificateFields:
         i = 0
         for data in issuer_as_text:
             master_key = data.split('=')[0]
-            secondary_key = 'name'
+            secondary_key = REF_NAME
             secondary_value = data.split('=')[1]
-            self.reference[master_key]['value'] = secondary_value
+            self.reference[master_key][REF_VALUE] = secondary_value
             i += 1
 
     def get_country(self):
@@ -93,35 +96,35 @@ class CertificateFields:
         Returns string containing the country of the issuer or subject
         :return: string
         """
-        return self.reference['C']['value']
+        return self.reference[REF_COUNTRY][REF_VALUE]
 
     def get_locality(self):
         """
         Returns string containing the locality of the issuer or subject
         :return: string
         """
-        return self.reference['L']['value']
+        return self.reference[REF_LOCALITY][REF_VALUE]
 
     def get_state_locality(self):
         """
         Returns string containing the state locality of the issuer or subject
         :return: string
         """
-        return self.reference['ST']['value']
+        return self.reference[REF_STATE_LOCALITY][REF_VALUE]
 
     def get_common_name(self):
         """
         Returns string containing the common name of the issuer or subject
         :return: string
         """
-        return self.reference['CN']['value']
+        return self.reference['CN'][REF_VALUE]
 
     def get_organization(self):
         """
         Returns string containing the organization of the issuer or subject
         :return: string
         """
-        return self.reference['O']['value']
+        return self.reference[REF_ORGANIZATION][REF_VALUE]
 
     def get_organization_unit(self):
         """
@@ -129,11 +132,11 @@ class CertificateFields:
         the issuer or subject
         :return: string
         """
-        return self.reference['OU']['value']
+        return self.reference[REF_ORGANIZATION_UNIT][REF_VALUE]
 
     def get_email(self):
         """
         Returns string containing the email of the issuer or subject
         :return: string
         """
-        return self.reference['emailAddress']['value']
+        return self.reference['emailAddress'][REF_VALUE]

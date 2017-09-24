@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# coding:utf8
+# coding: utf8
 
 
 """
@@ -26,6 +26,7 @@ import M2Crypto
 import re
 
 from argparse import ArgumentParser
+from global_ref import *
 from CertificateFields import CertificateFields, showme
 from M2Crypto import X509
 
@@ -63,14 +64,14 @@ class CertificateTreatment:
         Prints certificate version
         :return: None
         """
-        showme("Version : %s" % self.cert.get_version())
+        showme("%s %s" % (VERSION_MESSAGE, self.cert.get_version()))
 
     def show_extension(self):
         """
         Prints certificate extension
         :return: None
         """
-        showme("Extension count : %s" % self.cert.get_ext_count())
+        showme("%s %s" % (EXTENSION_coUNT_MESSAGE, self.cert.get_ext_count()))
 
     def show_fingerprint(self):
         """
@@ -78,28 +79,28 @@ class CertificateTreatment:
         :return: None
         """
         message_fingerprint = self.cert.get_fingerprint()
-        showme("Message fingerprint = %s" % message_fingerprint)
+        showme("%s %s" % (FINGERPRINT_MESSAGE, message_fingerprint)
 
     def show_valid_not_before(self):
         """
         Prints not before validation date of a certificate
         :return: None
         """
-        showme("Valid not before : %s" % self.cert.get_not_before())
+        showme("%s %s" % (VALID_NOT_BEFORE_MESSAGE, self.cert.get_not_before()))
 
     def show_valid_not_after(self):
         """
         Prints expiration date of the certificate
         :return: None
         """
-        showme("Valid not after : %s" % self.cert.get_not_after())
+        showme("%s %s" % (VALID_NOT_AFTER_MESSAGE ,self.cert.get_not_after()))
 
     def show_serial_number(self):
         """
         Prints serial number of a certificate
         :return: None
         """
-        showme("Serial number : %s" % self.cert.get_serial_number())
+        showme("%s %s" % (SERIAL_NUMBER_MESSAGE, self.cert.get_serial_number()))
 
     def show_public_key(self):
         """
@@ -109,7 +110,7 @@ class CertificateTreatment:
         public_key = self.cert.get_pubkey()
         #showme("Private key :\n%s" % public_key.as_pem())
         public_key_rsa = public_key.get_rsa()
-        showme("Public key :\n %s" % public_key_rsa.as_pem())
+        showme("%s %s" % (PUBLIC_KEY_MESSAGE, public_key_rsa.as_pem()))
 
     def set_issuer(self):
         """
@@ -145,8 +146,8 @@ class CertificateTreatment:
         Prints issuer locality
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['L']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_LOCALITY][REF_NAME]\
                 .lower(), self.get_issuer_locality()))
 
     def get_issuer_country(self):
@@ -161,8 +162,8 @@ class CertificateTreatment:
         Displays issuer country
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['C']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_COUNTRY][REF_NAME]\
                 .lower(), self.get_issuer_country()))
 
     def get_issuer_state_locality(self):
@@ -177,8 +178,8 @@ class CertificateTreatment:
         Displays issuer state locality
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['ST']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_STATE_LOCALITY][REF_NAME]\
                 .lower(), self.get_issuer_state_locality()))
 
     def get_issuer_common_name(self):
@@ -193,8 +194,8 @@ class CertificateTreatment:
         Displays issuer common name
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['CN']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_COMMON_NAME][REF_NAME]\
                 .lower(), self.get_issuer_common_name()))
 
     def get_issuer_organization(self):
@@ -209,8 +210,8 @@ class CertificateTreatment:
         Displays issuer organization
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['O']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_ORGANIZATION][REF_NAME]\
                 .lower(), self.get_issuer_organization()))
 
     def get_issuer_organization_unit(self):
@@ -225,8 +226,8 @@ class CertificateTreatment:
         Displays issuer organization unit
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['OU']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_ORGANIZATION_UNIT][REF_NAME]\
                 .lower(), self.get_issuer_organization_unit()))
 
     def get_issuer_email(self):
@@ -241,8 +242,8 @@ class CertificateTreatment:
         Displays issuer email
         :return: None
         """
-        showme("Issuer %s : %s" % \
-               (self.issuer_info.reference['emailAddress']['name']\
+        showme("%s %s : %s" % \
+               (ISSUER, self.issuer_info.reference[REF_EMAIL_ADDRESS][REF_NAME]\
                 .lower(), self.get_issuer_email()))
 
     def set_subject(self):
@@ -272,7 +273,7 @@ class CertificateTreatment:
         Prints subject's raw data of a certificate X509
         :return: None
         """
-        showme("Subject : %s" % self.cert.get_subject())
+        showme("%s %s" % (SUBJECT, self.cert.get_subject()))
 
     def get_subject_locality(self):
         """
@@ -286,8 +287,8 @@ class CertificateTreatment:
         Prints subject's locality of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['L']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_LOCALITY][REF_NAME]\
                 .lower(), self.get_subject_locality()))
 
     def get_subject_country(self):
@@ -302,8 +303,8 @@ class CertificateTreatment:
         Prints subject's country of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['C']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_COUNTRY][REF_NAME]\
                 .lower(), self.get_subject_country()))
 
     def get_subject_state_locality(self):
@@ -318,8 +319,8 @@ class CertificateTreatment:
         Prints subject's state locality of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['ST']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_STATE_LOCALITY][REF_NAME]\
                 .lower(), self.get_subject_state_locality()))
 
     def get_subject_common_name(self):
@@ -334,8 +335,8 @@ class CertificateTreatment:
         Prints subject's common name of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['CN']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_COMMON_NAME][REF_NAME]\
                 .lower(), self.get_subject_common_name()))
 
     def get_subject_organization(self):
@@ -350,8 +351,8 @@ class CertificateTreatment:
         Prints subject's organization of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['O']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_ORGANIZATION][REF_NAME]\
                 .lower(), self.get_subject_organization()))
 
     def get_subject_organization_unit(self):
@@ -366,8 +367,8 @@ class CertificateTreatment:
         Prints subject's organization of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['OU']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_ORGANIZATION_UNIT][REF_NAME]\
                 .lower(), self.get_subject_organization_unit()))
 
     def get_subject_email(self):
@@ -382,8 +383,8 @@ class CertificateTreatment:
         Prints subject's email of a certificate X509
         :return: None
         """
-        showme("Subject %s : %s" % \
-               (self.subject_info.reference['emailAddress']['name']\
+        showme("%s %s : %s" % \
+               (SUBJECT, self.subject_info.reference[REF_EMAIL_ADDRESS][REF_NAME]\
                 .lower(), self.get_subject_email()))
 
     def show_all(self):
