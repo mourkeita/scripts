@@ -49,7 +49,7 @@ class CertificateFields:
         """
         self.reference = {
             REF_COUNTRY: {
-                NAME: COUNTRY,
+                REF_NAME: COUNTRY,
                 REF_VALUE: '',
             },
             REF_COMMON_NAME: {
@@ -72,8 +72,8 @@ class CertificateFields:
                 REF_NAME: ORGANIZATION_UNIT,
                 REF_VALUE: ''
             },
-            'emailAddress': {
-                REF_NAME: 'Email',
+            REF_EMAIL_ADDRESS: {
+                REF_NAME: EMAIL_ADDRESS,
                 REF_VALUE: ''
             }
         }
@@ -117,7 +117,7 @@ class CertificateFields:
         Returns string containing the common name of the issuer or subject
         :return: string
         """
-        return self.reference['CN'][REF_VALUE]
+        return self.reference[REF_COMMON_NAME][REF_VALUE]
 
     def get_organization(self):
         """
@@ -139,4 +139,4 @@ class CertificateFields:
         Returns string containing the email of the issuer or subject
         :return: string
         """
-        return self.reference['emailAddress'][REF_VALUE]
+        return self.reference[REF_EMAIL_ADDRESS][REF_VALUE]
