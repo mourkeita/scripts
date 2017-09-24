@@ -79,7 +79,7 @@ class CertificateTreatment:
         :return: None
         """
         message_fingerprint = self.cert.get_fingerprint()
-        showme("%s %s" % (FINGERPRINT_MESSAGE, message_fingerprint)
+        showme("%s %s" % (FINGERPRINT_MESSAGE, message_fingerprint))
 
     def show_valid_not_before(self):
         """
