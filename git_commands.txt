@@ -12,3 +12,7 @@ git commit -m "Message"
 git status
 git checkout master
 git merge new_branch
+git push
+git branch -d new_branch
+git log --graph
+git status
