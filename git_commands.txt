@@ -1,0 +1,14 @@
+# GIT COMMANDS
+git init
+git clone
+git pull
+git branch
+git branch new_branch
+git checkout new_branch
+#Modifications
+git status
+git add modified_file
+git commit -m "Message"
+git status
+git checkout master
+git merge new_branch
