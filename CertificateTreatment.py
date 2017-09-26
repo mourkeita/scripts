@@ -14,7 +14,9 @@ This code takes a CSR or X509 certificate and displays its attributes.
 - email
 - begin date
 - expiration date
+TODO
 This test even a certificate is revokated or good.
+
 To run this code :
 python CertificateTreatment.py --cert "certificate"
 """
