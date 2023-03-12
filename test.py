@@ -11,7 +11,7 @@ class Test:
 	This is a class to test functions
 	'''
 	def __init__(self):
-		''' Constructeur
+		''' Constructor
 		'''
 		pass
 
