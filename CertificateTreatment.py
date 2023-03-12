@@ -22,15 +22,15 @@ python CertificateTreatment.py --cert "certificate"
 """
 
 import argparse
-import CertificateFields
-import M2Crypto
+from argparse import ArgumentParser
 import re
 
-from argparse import ArgumentParser
-from global_ref import *
-from CertificateFields import CertificateFields, showme
+import M2Crypto
 from M2Crypto import X509
 
+import CertificateFields
+from CertificateFields import CertificateFields, showme
+from global_ref import *
 
 __author__ = "Mour KEITA"
 __year__ = "2017"

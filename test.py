@@ -2,7 +2,7 @@
 # coding : utf8
 
 import requests
-import urllib2
+import urllib3
 
 URL = 'http://web/nvidia/favicon.ico'
 
@@ -15,17 +15,20 @@ class Test:
 		'''
 		pass
 
-	def get_image_request(self, url):
+	def get_image_request(self, URL):
 		req = requests.get(URL)
-		print req.headers
-		print req.status_code
+		print(req.headers)
+		print(req.status_code)
 
-	def get_image_urllib(self, url):
-		req = urllib2.urlopen(URL)
+	def get_image_urllib(self, URL):
+		req = urllib3.urlopen(URL)
 		res = req.read()
-		#print res
+		return res
+
+	def multiply_2(self, x):
+		return x*2
 
 
-test = Test()
-test.get_image_request(URL)
-test.get_image_urllib(URL)
+# test = Test()
+# test.get_image_request(URL)
+# test.get_image_urllib(URL)
