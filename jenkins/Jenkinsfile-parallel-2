@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('1') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage("2 3 4"){
+            parallel{
+                stage("2 3"){
+                    stages {
+                        stage("2"){
+                            steps {
+                                echo "2"
+                            }
+                        }
+                        stage("3"){
+                            steps{
+                                echo "3"
+                            }
+                        }
+                    }
+                }    
+                stage("4"){
+                    steps{
+                        echo "4"
+                    }
+                }
+            }
+        }
+        stage("5"){
+            steps{
+                echo "5"
+            }
+        }
+    }
+}
