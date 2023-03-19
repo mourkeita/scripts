@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('A') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage("B C D"){
+            parallel{
+                stage("B C D"){
+                    stages {
+                        stage("B"){
+                            steps {
+                                echo "B"
+                            }
+                        }
+                        stage("C"){
+                            steps{
+                                echo "C"
+                            }
+                        }
+                        stage("D"){
+                            steps{
+                                echo "D"
+                            }
+                        }
+                    }
+                }
+                stage("E F G"){
+                    stages {
+                        stage("E"){
+                            steps {
+                                echo "E"
+                            }
+                        }
+                        stage("F"){
+                            steps{
+                                echo "F"
+                            }
+                        }
+                        stage("G"){
+                            steps{
+                                echo "G"
+                            }
+                        }
+                    }
+                }
+                stage("H I J"){
+                    stages {
+                        stage("H"){
+                            steps {
+                                echo "H"
+                            }
+                        }
+                        stage("I"){
+                            steps{
+                                echo "I"
+                            }
+                        }
+                        stage("J"){
+                            steps{
+                                echo "J"
+                            }
+                        }
+                    }
+                }
+                stage("K"){
+                    steps{
+                        echo "K"
+                    }
+                }
+            }
+        }
+        stage("F"){
+            steps{
+                echo "5"
+            }
+        }
+    }
+}
